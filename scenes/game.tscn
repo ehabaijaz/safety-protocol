@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://y4bjf418lk8m"]
+
+[ext_resource type="Script" uid="uid://btd374bty8646" path="res://scenes/game.gd" id="1_uwrxv"]
+[ext_resource type="VideoStream" uid="uid://cm11tggvkvxr0" path="res://intro_vhs.ogv" id="2_lbhrr"]
+[ext_resource type="VideoStream" uid="uid://blfkiolwhcpnc" path="res://bg_vhs.ogv" id="2_lnu2h"]
+[ext_resource type="FontFile" uid="uid://ceugplysyoofb" path="res://HomeVideo-BLG6G.ttf" id="3_lbhrr"]
+[ext_resource type="VideoStream" uid="uid://cx4a3n58rpkn6" path="res://SPCOMPRESSED.ogv" id="5_iywne"]
+[ext_resource type="AudioStream" uid="uid://brkb3rkimx0sw" path="res://2000hz.mp3" id="6_p57ef"]
+
+[node name="Game" type="Control" unique_id=400599674]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uwrxv")
+
+[node name="BGPlayer" type="VideoStreamPlayer" parent="." unique_id=1414657702]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_lnu2h")
+expand = true
+
+[node name="WhisperLabel" type="Label" parent="." unique_id=714911632]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=695094739]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 51.0
+grow_horizontal = 2
+
+[node name="QuestionLabel" type="Label" parent="VBoxContainer" unique_id=443405095]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lbhrr")
+text = "If an alternate of you appears at your window, do you open it?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1538250956]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lbhrr")
+text = "Open window"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1915646751]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lbhrr")
+text = "Scream"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=77196970]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lbhrr")
+text = "Close blinds"
+
+[node name="IntroPlayer" type="VideoStreamPlayer" parent="." unique_id=1086647663]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_lbhrr")
+expand = true
+
+[node name="SafetyProtocol" type="VideoStreamPlayer" parent="." unique_id=936921017]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("5_iywne")
+expand = true
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1437627905]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -23.0
+offset_right = -148.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1322172423]
+
+[node name="HZ" type="AudioStreamPlayer" parent="." unique_id=1018557063]
+stream = ExtResource("6_p57ef")
+volume_db = 5.0
+pitch_scale = 1.2
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="finished" from="SafetyProtocol" to="." method="_on_safety_protocol_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

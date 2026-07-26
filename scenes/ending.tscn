@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cdb6tto1c3xld"]
+
+[ext_resource type="FontFile" uid="uid://ceugplysyoofb" path="res://HomeVideo-BLG6G.ttf" id="1_2x1jc"]
+[ext_resource type="Script" uid="uid://c3kgq5ub8mvb5" path="res://scenes/ending.gd" id="1_nfmnx"]
+[ext_resource type="Texture2D" uid="uid://fhmp114lvy4x" path="res://goodbye.png" id="3_qa3ag"]
+
+[node name="Ending" type="Control" unique_id=1184346620]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nfmnx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=568646676]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07762883, 0.07762881, 0.07762881, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1775191281]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 26.0
+offset_right = 161.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_2x1jc")
+text = "AN ALTERNATE HAS ENTERED YOUR HOME"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1539995693]
+
+[node name="Goodbye" type="Sprite2D" parent="." unique_id=397966332]
+position = Vector2(304, 264)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_qa3ag")
+
+[node name="Timer" type="Timer" parent="." unique_id=454751894]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
